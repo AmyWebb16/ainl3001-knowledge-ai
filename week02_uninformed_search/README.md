@@ -15,8 +15,6 @@ By the end of this lab, you should be able to:
 - Apply search algorithms to the grid world introduced in Week 1.
 - Recognise limitations of unstructured search code.
 
----
-
 ## Context
 
 Search algorithms explore a **state space** to find a solution path from an initial state to a goal state.
@@ -31,8 +29,6 @@ This week, we will use the same grid-world idea to explore two **uninformed sear
 They are called *uninformed* because they do not use additional information about how close a state is to the goal.
 
 Both algorithms explore the same state space, but they differ in **which state they choose to explore next**.
-
----
 
 ## Starter Code
 
@@ -83,8 +79,6 @@ A valid move must:
 
 Before implementing the search algorithms, read through `get_neighbours()` and make sure you understand what it does.
 
----
-
 ## Task 1 — Implement BFS
 
 Complete:
@@ -127,8 +121,6 @@ You may find it useful to store both:
 
 in the queue.
 
----
-
 ## Task 2 — Implement DFS
 
 Complete:
@@ -166,8 +158,6 @@ Your DFS implementation should:
 5. Generate neighbouring states using `get_neighbours()`.
 6. Avoid repeatedly exploring states that have already been visited.
 7. Return the path when the goal is found.
-
----
 
 ## Task 3 — Apply BFS and DFS to the Grid
 
@@ -211,8 +201,6 @@ Consider:
 - Which path is shorter?
 - Why are the paths different?
 
----
-
 ## Task 4 — Compare BFS and DFS
 
 Compare the behaviour of the two search algorithms.
@@ -251,8 +239,6 @@ This causes DFS to explore one branch before returning to explore alternatives.
 
 Think about how this difference affects the paths returned by the algorithms.
 
----
-
 ## Experiment
 
 Try changing the grid.
@@ -290,8 +276,6 @@ Consider:
 - Do they explore the grid in the same way?
 - What happens if obstacles block the route to the goal?
 
----
-
 ## Reflection Questions
 
 Be prepared to discuss the following questions:
@@ -306,8 +290,6 @@ Be prepared to discuss the following questions:
 8. Where is code duplicated between the BFS and DFS implementations?
 9. What parts of the code describe the **problem**, and what parts implement the **search algorithm**?
 10. How might we organise this code differently so that different search algorithms could work with different problems?
-
----
 
 ## Summary
 

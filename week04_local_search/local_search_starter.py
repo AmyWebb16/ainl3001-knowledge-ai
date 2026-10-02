@@ -31,8 +31,7 @@ Tasks
 import math
 import random
 
-from week04_local_search.queens_problem import QueensProblem
-
+from queens_problem import QueensProblem
 
 N = 8
 

@@ -19,8 +19,6 @@ By the end of this lab, you should be able to:
 
 > **Assessment:** This lab is a CA exercise worth **2% of your module mark**.
 
----
-
 ## Background
 
 In Week 2, we explored a state space using:

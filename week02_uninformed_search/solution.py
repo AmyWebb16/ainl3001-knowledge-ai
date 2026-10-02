@@ -17,8 +17,7 @@ This solution demonstrates:
 
 from collections import deque
 
-from visualisation import show_final_path
-
+from common.grid_visualisation import show_final_path
 
 # --------------------------------------------------
 # GRID CONFIGURATION
