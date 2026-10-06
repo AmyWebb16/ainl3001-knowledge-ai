@@ -50,14 +50,26 @@ class GridProblem(Problem):
         """
 
         # TODO:
-        #
-        # 1. Extract x and y from state.
-        # 2. Create an empty list of actions.
-        # 3. Check which movements are valid.
-        # 4. Add valid actions to the list.
-        # 5. Return the list.
+        x, y = state
+        actions = []
 
-        pass
+        # move up
+        if y > 0:
+            actions.append("up")
+
+        # move down
+        if y < GRID_SIZE - 1:
+            actions.append("down")
+
+        # move left
+        if x > 0:
+            actions.append("left")
+
+        # move right
+        if x < GRID_SIZE - 1:
+            actions.append("right")
+
+        return actions
 
     def result(self, state, action):
         """
@@ -72,12 +84,24 @@ class GridProblem(Problem):
         """
 
         # TODO:
-        #
-        # 1. Extract x and y from state.
-        # 2. Check which action was requested.
-        # 3. Return the resulting state.
+        x,y = state
 
-        pass
+        # up move
+        if action == "up":
+            return(x,y -1)
+
+        # down move
+        if action == "down":
+            return(x,y +1)
+
+        # left move
+        if action == "left":
+            return(x -1, y)
+
+        if action == "right":
+            return(x +1, y)
+
+        raise ValueError(f"ERROR action: {action}")
 
 
 # --------------------------------------------------
@@ -137,8 +161,10 @@ print(
 Be ready to discuss:
 
 1. What information is stored in problem.initial?
+the start state (0,0)
 
 2. What information is stored in problem.goal?
+the goal state (4,4)
 
 3. What is the difference between:
 
@@ -148,10 +174,16 @@ Be ready to discuss:
 
        problem.result(state, action)
 
+       problem.action(state) returns all avaible actions from current state
+       problem.result(state,action) returns the new current state after doing the action
+
 4. Why doesn't Problem know anything about grids?
+because problem is genric class for any problem not just grid.
 
 5. Why doesn't GridProblem know anything about search?
+because it is a specific problem which is not related to search algorithms, defies problem structure and rules not solution.
 
 6. Could the same Problem structure be used for something
    other than a grid?
+   yes, it is generic class, used for any problem with start and goal state and actions and results
 """
