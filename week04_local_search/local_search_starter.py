@@ -149,7 +149,23 @@ def hill_climbing(problem, start_board):
     current = start_board
 
     # TODO
-    pass
+    while True:
+            # make all neigbours of current board
+            neighbours = generate_neighbours(problem,current)
+    
+            # find no. conflicts of each neighbour
+            scored_neighbours = [(count_conflicts(board),board) for board in neighbours]
+
+            # find neigbour with least conflicts
+            best_score, best_board = min(scored_neighbours, key=lambda x: x[0])
+    
+            # see if best neighbour is correct
+            current_score = count_conflicts(current)
+    
+            if best_score >= current_score:
+                return current
+    
+            current = best_board
 
 
 # --------------------------------------------------
@@ -216,3 +232,9 @@ if __name__ == "__main__":
     print(
         f"{len(neighbours)} neighbours generated"
     )
+
+    print("\nHill Climbing")
+    hill_board = hill_climbing(problem, board)
+
+    print("\nHill Conflicts")
+    print(count_conflicts(hill_board))
