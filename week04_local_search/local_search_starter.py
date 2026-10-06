@@ -75,15 +75,23 @@ def count_conflicts(board):
     """
 
     # TODO:
-    # Compare each queen with every queen
-    # that comes after it.
-    #
-    # Queens conflict when they are:
-    #
-    #   1. in the same row
-    #   2. on the same diagonal
+    conflicts = 0
+    n = len(board)
 
-    pass
+    for col1 in range(n):
+        row1 = board[col1]
+        for col2 in range(col1 +1, n):
+            row2 = board[col2]
+
+            # check if queen same row
+            if row1 == row2:
+                conflicts = conflicts + 1
+
+            # check if queens are diagonal
+            if abs(row1 - row2) == abs(col1 - col2):
+                conflicts = conflicts + 1
+
+    return conflicts
 
 
 # --------------------------------------------------
