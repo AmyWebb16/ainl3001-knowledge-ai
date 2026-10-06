@@ -314,13 +314,18 @@ Consider the following board:
 Before writing any code, consider the following questions:
 
 1. How many pairs of queens are attacking each other?
+   6 paris are attacking each other at (0,0), (1,1), (2,2), (3,3) 4 choose 2
+
 2. Does this represent a valid solution?
+   No as 0 pairs have to bd attacking each other
+
 3. If one queen moved, could the number of conflicts decrease?
+    Yes if a queen moves one row it will stop other three from attacking it.
 
 ### Discussion
 
 Why might an AI system need a way to measure the quality of a candidate solution?
-
+it tells AI how good the solution is, whether changes to solution imrpoves things and what direction to search next
 
 # 8. Task 1 — Cost Function
 
@@ -382,8 +387,13 @@ generate_neighbours(problem, board)
 For an 8×8 board:
 
 1. How many alternative rows can each queen move to?
+   7 alternative
+
 2. How many neighbours should therefore be generated?
+   8 queen each with 7 alternative rows = 8*7 = 56 neighbours
+
 3. Why might generating every neighbour become expensive for large boards?
+   because number of neighbours grow therefore finding them grows as well
 
 Use your answer to Question 2 as a useful check on your implementation.
 
@@ -441,17 +451,22 @@ Record the final cost.
 
 | Attempt | Final Cost |
 |---|---:|
-| 1 | |
-| 2 | |
-| 3 | |
-| 4 | |
-| 5 | |
+| 1 | 2|
+| 2 | 1|
+| 3 |1 |
+| 4 |0 |
+| 5 |3 |
 
 Consider:
 
 - Does Hill Climbing always find a solution?
+  no only moves if neighbout is better, if neighbours worse it stops.
+
 - Does it sometimes stop with conflicts remaining?
+  yes if every neighbour is worse or have the same score
+
 - Why does it stop if a better neighbour cannot be found?
+  because it only move if neigbhours have lower conflict count
 
 
 # 12. Local Minima and Plateaus
@@ -504,9 +519,13 @@ This allows the algorithm to:
 ### Questions
 
 1. Why might accepting a worse move sometimes be useful?
-2. How does the algorithm behave when the temperature is high?
-3. How does its behaviour change as the temperature decreases?
+   it can get you out of local miniums
 
+2. How does the algorithm behave when the temperature is high?
+   the prob of acepting worse moves is higher it has and a eider exploration so it doesn't get stuck easily
+
+3. How does its behaviour change as the temperature decreases?
+   the prob of accepting worse moves is slower becomes more like a greedy algorithm more likely to accept better moves
 
 # 14. Task 5.1 — Compare the Algorithms
 
@@ -516,16 +535,22 @@ Record the best cost you find.
 
 | Algorithm | Best Cost Found |
 |---|---:|
-| Hill Climbing | |
-| Simulated Annealing | |
+| Hill Climbing | 0|
+| Simulated Annealing |0 |
 
 Consider the behaviour you observed:
 
 - Do both algorithms always produce the same result?
-- Which algorithm shows more variation between runs?
-- How does accepting occasional worse moves affect the search?
-- What trade-off does Simulated Annealing introduce?
+  no
 
+- Which algorithm shows more variation between runs?
+  simulated annealing as it takes more risks
+
+- How does accepting occasional worse moves affect the search?
+ doesn't get stuck at local minimum and explores more states
+
+- What trade-off does Simulated Annealing introduce?
+  results vary anf sometimes is worse than hill climbing
 
 # 15. Deterministic and Stochastic Search
 
@@ -584,14 +609,29 @@ Your Git history should show the development of your solution over time.
 Complete these after finishing the main tasks.
 
 1. What is the difference between search and optimisation?
-2. Why does an optimisation problem require a way to evaluate candidate solutions?
-3. Why can Hill Climbing become stuck in a local minimum?
-4. What is a plateau?
-5. How does Simulated Annealing attempt to overcome the limitations of Hill Climbing?
-6. What is the difference between deterministic and stochastic search?
-7. How did the `Problem` representation allow us to represent both a grid world and N-Queens?
-8. How do optimisation techniques such as these relate to Machine Learning?
+   search finds a specific end state while optimisation tries to find best state in terms of cost
 
+2. Why does an optimisation problem require a way to evaluate candidate solutions?
+  becuase has to know who good new state is to decide which neigbhour to go to
+
+3. Why can Hill Climbing become stuck in a local minimum?
+   only accepts neigbhour if its better so if neigbhours are worse or the same it gets stuck
+
+4. What is a plateau?
+   where negibhours have the same score 
+
+5. How does Simulated Annealing attempt to overcome the limitations of Hill Climbing?
+   it sometimes accepts a worse outcome to explore more
+
+6. What is the difference between deterministic and stochastic search?
+   Deterministic always behaves the same so same input will always give same output.
+   Stochastic has randomness so same inputs can lead to different outputs.
+
+7. How did the `Problem` representation allow us to represent both a grid world and N-Queens?
+   because it has actions, result and cost which is generic so can work for any state space problem
+
+8. How do optimisation techniques such as these relate to Machine Learning?
+   it can help train a model by reducing the loss function. It helps adjust parameters until model performs to optimal performance.
 
 # Extensions
 
