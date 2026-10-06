@@ -111,11 +111,9 @@ def generate_neighbours(problem, board):
     neighbours = []
 
     # TODO:
-    #
-    # 1. Ask the problem for the available actions.
-    # 2. Apply each action.
-    # 3. Add the resulting state to neighbours.
-
+    for action in problem.actions(board):
+        new_state = problem.result(board, action)
+        neighbours.append(new_state)
     return neighbours
 
 
@@ -151,7 +149,6 @@ def hill_climbing(problem, start_board):
     current = start_board
 
     # TODO
-
     pass
 
 
