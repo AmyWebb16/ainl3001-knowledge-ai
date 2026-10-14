@@ -98,6 +98,10 @@ def select_unassigned_variable(assignment):
     # TASK 3 TODO:
     # Return the first variable not in assignment, or None if all
     # variables have been assigned.
+    for var in variables:
+        if var not in assignment:
+            return var
+    return None
     #
     # TASK 5 TODO (after backtracking works):
     # For each unassigned variable, temporarily try each colour,
@@ -114,13 +118,28 @@ def backtracking_search(assignment):
     """Return a complete valid assignment, or None if none exists."""
     # TODO:
     # 1. If every variable has been assigned, return a COPY.
+    if len(assignment) == len(variables):
+        return assignment.copy()
+    
     # 2. Choose a variable with select_unassigned_variable().
+    var = select_unassigned_variable(assignment)
+
     # 3. For each colour in its domain, temporarily assign it.
+    for colour in domains[var]:
+        assignment[var] = colour
+
     # 4. If the partial assignment is valid, search recursively.
-    # 5. Return the recursive result if a solution was found.
+        if is_valid_assignment(assignment):
+            result = backtracking_search(assignment)
+            # 5. Return the recursive result if a solution was found.
+            if result is not None:
+                return result
+            
     # 6. Otherwise remove the temporary assignment (backtrack).
+        del assignment[var]
+
     # 7. Return None if every colour fails.
-    pass
+    return None
 
 
 # --------------------------------------------------
