@@ -134,9 +134,16 @@ example_assignment = {
 Before writing any code, answer these questions:
 
 1. Is this assignment valid?
+    no as neigbouring regions have same colour e.g. WA red and NT red.
+
 2. Which neighbouring pairs violate a constraint?
+    WA&NT, SA&V.
+
 3. How could you correct the assignment?
+    change nt to blue, v to red and q to red.
+
 4. Why is it useful to detect violations early?
+    saves time and prevents from making random changes and leading to dead ends.
 
 Check your answers against the constraints list.
 
@@ -174,9 +181,16 @@ Make sure you understand what each structure represents.
 Consider:
 
 - Why is a list appropriate for the variables?
+    keeps order and is easy for loops.
+
 - Why is a dictionary useful for the domains?
+    can quickly look up.
+
 - What does a pair such as `("WA", "NT")` represent?
+    it is a constraint as they are neigbours so can't have same colour.
+
 - How would you add a new region to this CSP?
+    using .append()
 
 You do not need to rewrite the provided representation.
 
@@ -314,9 +328,16 @@ The `**` operator means *raised to the power of*.
 Think about these questions:
 
 1. Would brute force need to consider many invalid complete assignments?
+    yes as it checks 729 complete assignments even though a lot violate constraints.
+
 2. What happens when backtracking detects a constraint violation in a partial assignment?
+    stops and doesn't continue checking branch.
+
 3. Why can rejecting partial assignments early save work?
+    removes checking large full assignments that aren't valid avoids wasted effort and time.
+
 4. Does finding one valid solution mean that all valid solutions have been found?
+    no backtracking only returns  first solution not every one
 
 ## Task 5: Implement Minimum Remaining Values (MRV)
 
@@ -353,8 +374,13 @@ If two variables have the same number of legal colours, selecting the first is a
 ### Questions
 
 - Why might selecting a highly restricted variable help?
+    because var with little colours left propbably cause failure choosing early makes algorithm conflicts quicker and removes bad branches.
+
 - What happens if a variable has no legal values remaining?
+    backtracking fails and algorithm tries another colour.
+
 - Does MRV guarantee that backtracking will always be faster?
+    no helps but doesn't guarantee speed mrv doesn't reduce search by large amount.
 
 ## 4. GitHub task
 
@@ -390,9 +416,18 @@ Do not push your changes to the lecturer repository. Your work belongs in your o
 Answer these questions in your lab notes or be prepared to discuss them:
 
 1. What causes backtracking?
+    is caused when partial assignment violates constraint, soon as conflict mafe algorithm redoes with different colour.
+
 2. Why can backtracking be faster than brute force?
+    it rejects bas partial assignments earlier before there assignments. whereas brute force checks all 729 complete assignments.
+
 3. Why might MRV reduce search?
+    chooses variable with least amount of colour left. Variables with lot of neighbours more likely to fail so mrv helps algorithm detect dead ends early.
+
 4. How could this model represent timetabling?
+    each lecture instead of neigbours as a variable.
+    time of class instead of colour
+    constraints for conflicting classes would be same lecturer, room and course cannot be assigned same time slot.
 
 Try to use examples from the map-colouring exercise in your explanations.
 
