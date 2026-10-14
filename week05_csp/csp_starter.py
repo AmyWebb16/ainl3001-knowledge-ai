@@ -105,11 +105,26 @@ def select_unassigned_variable(assignment):
     #
     # TASK 5 TODO (after backtracking works):
     # For each unassigned variable, temporarily try each colour,
+    unassigned = [var for var in variables if var not in assignment]
+
+    best_var = None
+    best_count = float('inf')
+
+    for var in unassigned:
+        count = 0
     # check is_valid_assignment(), and undo the temporary assignment.
+        for colour in domains[var]:
+            assignment[var] = colour
+            if is_valid_assignment(assignment):
+                count += 1
+            del assignment[var]
+
     # Count legal colours and choose the variable with the fewest.
-    pass
+        if count < best_count:
+            best_count = count
+            best_var = var
 
-
+    return best_var
 # --------------------------------------------------
 # TASK 3 — BACKTRACKING SEARCH
 # --------------------------------------------------
