@@ -8,7 +8,7 @@ By the end of this lab you should be able to represent a game state, distinguish
 
 ## Getting started
 
-Open your own fork of the course repository in VS Code. Follow the [main README](../README.md) if you need to set up your environment or pull updates from the lecturer's `upstream` repository.
+Open your own fork of the course repository in VS Code. Follow the [main README](../README.md) if you need to set up your environment or pull updates from the module's `upstream` repository.
 
 Open **`week06_adversarial_search/adversarial_search_starter.py`** and click **Run Python File**. The file uses standard Python; no new dependencies are needed. Complete the TODOs in order and rerun after each stage. The lecturer will release `adversarial_search_solution.py` later.
 
