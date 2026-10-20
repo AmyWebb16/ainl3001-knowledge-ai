@@ -30,7 +30,9 @@ print(r"""
        3    5  2    9
 """)
 print("Which values do the two MIN nodes return?")
+print("The two MIN return 3 and 2 respectively as MIN takes worst option")
 print("Which branch should MAX choose, and why?")
+print("The MAX returns 3 as the two MINS hold 2 and 3 and 3 is the larger number")
 
 # BOARD — X plays next (three X marks and two O marks).
 # Board positions are numbered 0 to 8, left to right, top to bottom.
@@ -54,7 +56,14 @@ WINNING_LINES = [
 def print_board(state):
     """Display the nine cells as a 3-by-3 board."""
     # TODO: Print three rows of three cells.
-    pass
+    for row in range(3):
+        # get 3 cells
+        a, b, c = state[row *3: row * 3 +3]
+        print(f"{a} | {b} | {c}")
+
+        # draws line for end of row 1 and 2 but not 3
+        if row < 2:
+            print("--+---+--")
 
 
 # --------------------------------------------------
@@ -64,7 +73,9 @@ def print_board(state):
 def available_moves(state):
     """Return indices of empty cells (0 through 8)."""
     # TODO: Find every position containing " ".
-    pass
+    # loops through all 9 numbers check for blanks and then stores
+    return [ i for i in range(9) if state[i] == " "]
+    
 
 
 # --------------------------------------------------
@@ -77,8 +88,13 @@ def make_move(state, move, player):
     Assume move is legal. Do not modify the input board.
     """
     # TODO: Copy the board and place the player's mark.
-    pass
+    new_board = state.copy()
 
+    # stores X/O at index and updates board
+    new_board[move] = player
+
+    # refersh board for next move
+    return new_board
 
 # --------------------------------------------------
 # TASK 2 — WINNER
@@ -87,8 +103,10 @@ def make_move(state, move, player):
 def check_winner(state):
     """Return 'X', 'O' or None by checking all winning lines."""
     # TODO: Check each (a, b, c) in WINNING_LINES.
-    pass
-
+    for a, b, c in WINNING_LINES:
+        if state[a] != " " and state[a] == state[b] == state[c]:
+            return state[a]
+    return None
 
 # --------------------------------------------------
 # TASK 2 — TERMINAL STATE
@@ -97,7 +115,8 @@ def check_winner(state):
 def is_terminal(state):
     """Return True for a win or a full board (draw)."""
     # TODO: Detect a winner OR no remaining empty cells.
-    pass
+
+    return check_winner(state) is not None or len(available_moves(state)) == 0
 
 
 # --------------------------------------------------
@@ -110,8 +129,12 @@ def utility(state):
     Minimax calls this only at terminal states.
     """
     # TODO: Use check_winner() and return +1, -1 or 0.
-    pass
-
+    winner = check_winner(state)
+    if winner == "X":
+        return +1
+    if winner == "O":
+        return -1
+    return 0
 
 # --------------------------------------------------
 # TASK 3 — MINIMAX
