@@ -231,11 +231,49 @@ def alpha_beta(state, maximizing, alpha, beta, counter):
     beta  = best score MIN can guarantee so far.
     """
     # TODO: Adapt minimax():
-    # - MAX updates alpha; MIN updates beta.
-    # - Stop exploring remaining moves if alpha >= beta.
     # - Count visited nodes exactly as in minimax().
-    pass
+    counter["nodes"] += 1
+    if is_terminal(state):
+        return utility(state)
 
+    # - MAX updates alpha;
+    if maximizing:
+        # start with worst outcome
+        value = float("-inf")
+
+        for move in available_moves(state):
+            # move for X player
+            child = make_move(state, move, "X")
+
+            # max chooses highest value
+            value = max(value, alpha_beta(child, False, alpha, beta, counter))
+
+            # update alpha to be biggest
+            alpha = max(alpha, value)
+
+            # - Stop exploring remaining moves if alpha >= beta.
+            if alpha >= beta:
+                break
+        return value
+
+    # MIN updates beta.
+    else:
+        # worst value for O
+        value = float("inf")
+        for move in available_moves(state):
+            # make move for O player
+            child = make_move(state, move, "O")
+
+            # MIN choose lowest value
+            value = min(value, alpha_beta(child, True, alpha, beta, counter))
+
+            # update beta to be lowest
+            beta = min(beta, value)
+
+            # - Stop exploring remaining moves if alpha >= beta.
+            if alpha >= beta:
+                break
+        return value
 
 # --------------------------------------------------
 # TASK 6 — BEST MOVE WITH ALPHA-BETA
@@ -246,7 +284,21 @@ def best_move_alpha_beta(state, counter):
     # TODO: Like best_move(), but call alpha_beta().
     # Start alpha at -infinity and beta at +infinity.
     # Update alpha after each candidate X move.
-    pass
+    if is_terminal(state):
+        return None
+
+    alpha, beta = float("-inf"), float("inf")
+    best_score = float("-inf")
+    best_mv = None
+
+    for move in available_moves(state):
+        child = make_move(state, move, "X")
+        score = alpha_beta(child, False, alpha, beta, counter)
+        if score > best_score:
+            best_score = score
+            best_mv = move
+        alpha = max(alpha, best_score)
+    return best_mv
 
 
 # --------------------------------------------------
