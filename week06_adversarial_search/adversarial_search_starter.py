@@ -331,6 +331,13 @@ if __name__ == "__main__":
 
     print("\nReflection:")
     print("1. Why is Tic-Tac-Toe a search problem?")
+    print("you have a variety of moves that in turn creates a new board each time. new boards have more moves and make a decision tree. to choose best move you have to search through tree to see how game ends with\n")
+
     print("2. Why does Minimax assume an optimal opponent?")
+    print("it picks against what the best move of other player fot therefore any weaker move played by opponent makes it better for you. Thats why Min alwats picks lowest for O and Max picks highest\n")
+
     print("3. What is the purpose of a utility function?")
+    print("it sees end of game positions into binary numbers that computer can understand +1 X win, -1 O win, 0 draw. helps score earlier move\n")
+
     print("4. What happens as games become larger?")
+    print("the number of possible moves grows and tree is slower and not work as effectively.")

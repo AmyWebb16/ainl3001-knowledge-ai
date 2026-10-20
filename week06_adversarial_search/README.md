@@ -126,9 +126,16 @@ git push origin main
 ## Reflection
 
 1. Why is Tic-Tac-Toe considered a search problem?
+  you have a variety of moves that in turn creates a new board each time. new boards have more moves and make a decision tree. to choose best move you have to search through tree to see how game ends with
+
 2. Why does Minimax assume an optimal opponent?
+  it picks against what the best move of other player fot therefore any weaker move played by opponent makes it better for you. Thats why Min alwats picks lowest for O and Max picks highest
+
 3. What is the purpose of a utility function?
+  it sees end of game positions into binary numbers that computer can understand +1 X win, -1 O win, 0 draw. helps score earlier move
+
 4. What happens as games become larger?
+  the number of possible moves grows and tree is slower and not work as effectively
 
 ## Extensions
 
@@ -140,12 +147,12 @@ git push origin main
 
 ## Checklist
 
-- [ ] Explain the manual MIN/MAX tree.
-- [ ] Display a board, list moves, and return a copied board after a move.
-- [ ] Detect wins, draws and terminal states.
-- [ ] Implement recursive Minimax and choose a move for X.
-- [ ] Count visited nodes consistently.
-- [ ] Implement Alpha-Beta and compare it with Minimax.
-- [ ] Answer the reflection questions and push work to your fork.
+- [X] Explain the manual MIN/MAX tree.
+- [X] Display a board, list moves, and return a copied board after a move.
+- [X] Detect wins, draws and terminal states.
+- [X] Implement recursive Minimax and choose a move for X.
+- [X] Count visited nodes consistently.
+- [X] Implement Alpha-Beta and compare it with Minimax.
+- [X] Answer the reflection questions and push work to your fork.
 
 **Key takeaway:** Minimax chooses a move by considering an opponent who plays optimally. Alpha-Beta Pruning avoids exploring branches that cannot affect the final decision.
