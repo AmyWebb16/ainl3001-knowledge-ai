@@ -103,8 +103,12 @@ def make_move(state, move, player):
 def check_winner(state):
     """Return 'X', 'O' or None by checking all winning lines."""
     # TODO: Check each (a, b, c) in WINNING_LINES.
+    # loop thriugh each type of win row, col and diagonal
     for a, b, c in WINNING_LINES:
+
+        # for win can't be empty and cells have to be the same
         if state[a] != " " and state[a] == state[b] == state[c]:
+            # return winner X or O
             return state[a]
     return None
 
@@ -115,7 +119,7 @@ def check_winner(state):
 def is_terminal(state):
     """Return True for a win or a full board (draw)."""
     # TODO: Detect a winner OR no remaining empty cells.
-
+    #check if someon win ir no empty spaces remain
     return check_winner(state) is not None or len(available_moves(state)) == 0
 
 
@@ -129,11 +133,18 @@ def utility(state):
     Minimax calls this only at terminal states.
     """
     # TODO: Use check_winner() and return +1, -1 or 0.
+    # check who won
     winner = check_winner(state)
+
+    # if X max player win
     if winner == "X":
         return +1
+
+    # if O min player win
     if winner == "O":
         return -1
+
+    # draw
     return 0
 
 # --------------------------------------------------
@@ -147,13 +158,29 @@ def minimax(state, maximizing, counter):
     counter is a one-item dictionary: {'nodes': 0}.
     """
     # TODO:
-    # 1. Count this node: counter["nodes"] += 1.
-    # 2. If terminal, return utility(state).
-    # 3. For X (MAX), recursively choose the highest score.
-    # 4. For O (MIN), recursively choose the lowest score.
     # Use make_move() to avoid changing the original board.
-    pass
+    # 1. Count this node: counter["nodes"] += 1.
+    counter["nodes"] += 1
 
+    # 2. If terminal, return utility(state).
+    if is_terminal(state):
+        return utility(state)
+    
+    # 3. For X (MAX), recursively choose the highest score.
+    if maximizing:
+        best = float("-inf")
+        for move in available_moves(state):
+            child = make_move(state, move, "X")
+            best = max(best, minimax(child, False, counter))
+        return best
+    
+    # 4. For O (MIN), recursively choose the lowest score.
+    else:
+        best = float("inf")
+        for move in available_moves(state):
+            child = make_move(state, move, "O")
+            best = min(best, minimax(child, True, counter))
+        return best
 
 # --------------------------------------------------
 # TASK 4 AND 5 — BEST MOVE
@@ -164,10 +191,33 @@ def best_move(state, counter):
 
     Count nodes in recursive Minimax searches. Ties use first move.
     """
-    # TODO: Try each legal X move, call minimax() for O's turn,
-    # and return the move with the highest score.
+    # TODO:
+
     # If the board is terminal, return None.
-    pass
+    if is_terminal(state):
+        return None
+
+    # store worst score first
+    best_score = float("-inf")
+    # store the best move found
+    best_mv = None
+
+    # Try each legal X move, call minimax() for X's
+    for move in available_moves(state):
+
+        # but move in child state
+        child = make_move(state, move, "X")
+        # O's turn to make move
+        score = minimax(child, False, counter)
+
+        # if move gives better score update
+        if score > best_score:
+            best_score = score
+            best_mv = move
+
+    # return move that give X's best outcome
+    return best_mv
+ 
 
 
 # --------------------------------------------------
