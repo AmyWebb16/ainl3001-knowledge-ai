@@ -8,7 +8,7 @@ BSP
 """
 
 # TASK 1 — Represent facts (provided; inspect and experiment).
-facts = {"rainy","weekday", "cold"}
+facts = {"rainy","weekday","cold"}
 
 # TASK 2 — Represent rules (provided; inspect and experiment).
 # Each rule is (list_of_required_facts, conclusion).
@@ -58,7 +58,7 @@ def query(inferred_facts, statement):
     A False result means 'not established', not necessarily 'false'.
     """
     # TODO
-    pass
+    return statement in inferred_facts
 
 
 if __name__ == "__main__":
@@ -100,6 +100,11 @@ if __name__ == "__main__":
 
     print("\nTASK 5 — BACKWARD CHAINING (discussion)")
     print("Goal: stay_dry. Which rule concludes it? What must be true first?")
+    print("the rule is (['take_umbrella]', 'stay_dry') conculdes it.")
+    print("'take_umbrella' must be true which means 'rainy' must be true")
     print("\nTASK 6 — LOGIC DISCUSSION")
     print("Is 'IF rainy THEN take_umbrella' always true in the real world?")
+    print("No, because some people wear coats instead of umbrella and some people use umbrellas to block sunlight.")
     print("What assumptions does the rule make?")
+    print("The person always takes umbrella when it rains")
+    print("umbrella only used when rainy")
