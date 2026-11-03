@@ -8,7 +8,7 @@ BSP
 """
 
 # TASK 1 — Represent facts (provided; inspect and experiment).
-facts = {"rainy", "weekday"}
+facts = {"rainy", "rainy","weekday"}
 
 # TASK 2 — Represent rules (provided; inspect and experiment).
 # Each rule is (list_of_required_facts, conclusion).
@@ -52,6 +52,20 @@ if __name__ == "__main__":
         print(f"  IF {' AND '.join(conditions)} THEN {conclusion}")
     print("\nBefore coding, predict whether these can be inferred:")
     print("  take_umbrella?  stay_dry?  wear_coat?  Why?")
+    print("take_umbrella?  Yes, because rainy is a fact.")
+    print("stay_dry?  Yes, because take_umbrella is inferred there triggers rule.")
+    print("waer_coat? No, because even though rainy is a fact, cold is not")
+
+    print("\n" + "=" * 55)
+    print("TASKS 1-2 - REPRESENTING FACTS AND RULES")
+    print("=" * 55)
+    print("Why is a Python **set** suitable for storing known facts?")
+    print("it checks uniqueness so don't have to worry about duplicates.")
+    print("\nWhat happens if you try to add the same fact twice?")
+    print(facts)
+    print("the set ignores the duplicate and only shows unique values.")
+    print("\nIdentify which of the three rules has two conditions.")
+    print("Rule 2 it needs both rainy and cold to infer wear_coat.")
 
     print("\n" + "=" * 55)
     print("TASKS 3–4 — FORWARD CHAINING AND QUERIES")
