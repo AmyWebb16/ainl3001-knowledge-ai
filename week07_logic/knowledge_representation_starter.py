@@ -8,7 +8,7 @@ BSP
 """
 
 # TASK 1 — Represent facts (provided; inspect and experiment).
-facts = {"rainy", "rainy","weekday"}
+facts = {"rainy","weekday", "cold"}
 
 # TASK 2 — Represent rules (provided; inspect and experiment).
 # Each rule is (list_of_required_facts, conclusion).
@@ -30,7 +30,26 @@ def forward_chaining(known_facts, rules):
     4. Return the completed set.
     """
     # TODO
-    pass
+    # Copy known_facts into new set.
+    inferred_facts = set(known_facts)
+
+    # Examine every rule and add its conculsion when ALL conditions hold
+    changed = True
+    while changed:
+        changed = False
+
+        for conditions, conclusion in rules:
+            # checks each rule
+            if all(condition in inferred_facts for condition in conditions):
+
+                # Repeat until an entire pass adds no new facts.
+                if conclusion not in inferred_facts:
+                    inferred_facts.add(conclusion)
+                    changed = True
+
+    # Return the completed set
+    return inferred_facts
+        
 
 
 def query(inferred_facts, statement):
