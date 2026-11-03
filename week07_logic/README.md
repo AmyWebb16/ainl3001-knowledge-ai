@@ -63,9 +63,16 @@ Each tuple contains a **list of conditions** and a **conclusion**. Every conditi
 Before coding, discuss these questions with a peer:
 
 1. Can we infer `take_umbrella`? Why?
+    yes because rainy is a fact
+
 2. Can we infer `stay_dry`? Why?
+    yes as take_umbrella is infered there triggers rule
+
 3. Can we infer `wear_coat`? Why or why not?
+    no because even though rainy is a fact cold is not
+
 4. In which order might new facts be discovered?
+    take_umbrella to stay_dry
 
 Think about whether a conclusion from one rule can activate another rule.
 
@@ -122,6 +129,16 @@ Test these queries:
 
 Check that `facts` still contains only the original two facts after forward chaining. Then add `cold` to the initial facts and run the program again. Can you now infer `wear_coat`?
 
+**Before adding cold**
+Can infer take_umbrella? True
+Can infer stay_dry? True
+Can infer wear_coat? False
+
+**After adding cold**
+Can infer take_umbrella? True
+Can infer stay_dry? True
+Can infer wear_coat? True
+
 ## Task 5 — Backward chaining (manual exercise)
 
 Forward chaining starts from known facts and asks **what else follows?** Backward chaining starts from a goal and asks **what would need to be true?**
@@ -129,11 +146,19 @@ Forward chaining starts from known facts and asks **what else follows?** Backwar
 Start with the goal `stay_dry`:
 
 1. Which rule has `stay_dry` as its conclusion?
+    the condition `take_umbrella`.
+
 2. What condition does that rule require?
+    it needs `take_umbrella`to be true which needs `rainy` to be true which is a fact.
+
 3. Which rule could establish that condition?
+    the rule of `rainy` -> `take_umbrella`
+
 4. Does the chain ultimately reach an initial fact?
+     yes as `rainy`is a fact in the set 
 
 Draw the chain of reasoning. **No backward-chaining implementation is required** for the core lab.
+     rainy => take_umbrella => stay_dry
 
 ## Task 6 — Logic discussion
 
@@ -142,8 +167,14 @@ Consider the rule `IF rainy THEN take_umbrella`.
 Discuss:
 
 1. Does this rule have to be true in the real world?
+    No, some people don't use umbreallas and have raincoats. Some people use umbrellas when its not rainy.
+
 2. What assumptions are we making when we include it in the knowledge base?
+    person always takes umbrella when it rains
+    it only has to rain for umbrella to be used.
+
 3. How is logical inference from an accepted rule different from statistical reasoning under uncertainty?
+    logical inference is given rules and the conclusion must follw whereas statistical reasoning is given data and a conclusion is likely.
 
 A useful distinction: **logical entailment** means a conclusion follows from the knowledge base under the logic's rules. It does not guarantee that the knowledge base accurately describes reality.
 
@@ -162,9 +193,16 @@ You can make earlier commits after inspecting the facts and rules, and another a
 ## Reflection questions
 
 1. What is logical entailment?
+    means a conclusion must follow from rules of logic.
+
 2. How does forward chaining work?
+    starts with facts and applies rules to inefer new facts.
+
 3. How does backward chaining differ from forward chaining?
+    forward chaining starts with facts and is data-driven. backward chaing starts with query and finds rules that conclued the goal is goal_driven.
+
 4. What are the limitations of propositional logic?
+    can't express strucutre, uncertainty and execptions.
 
 ## Optional extensions
 
